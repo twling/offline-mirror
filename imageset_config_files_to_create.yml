@@ -1,0 +1,192 @@
+---
+imageset_config_files_to_create:
+  advanced-cluster-management:
+    channel: release-2.12
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  ansible-automation-platform-operator:
+    channel: stable-2.5
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  authorino-operator:
+    channel: tech-preview-v1
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  cincinnati-operator:
+    channel: v1
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  cluster-logging:
+    channel: stable-6.1
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  cluster-observability-operator:
+    channel: development
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  compliance-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  dell-csm-operator-certified:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  devspaces:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  gitlab-operator-kubernetes:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  gitlab-runner-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  gpu-operator-certified:
+    channel: v24.9
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  kernel-module-management:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  kernel-module-management-hub:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  kubernetes-nmstate-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  kubevirt-hyperconverged:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  local-storage-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  loki-operator:
+    channel: stable-6.1
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  lvms-operator:
+    channel: stable-4.16
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  metallb-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  nfd:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  nginx-ingress-operator:
+    channel: alpha
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  node-observability-operator:
+    channel: alpha
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  nvidia-network-operator:
+    channel: v24.10.0
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/certified-operator-index:v4.17
+  odf-operator:
+    channel: stable-4.16
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  openshift-cert-manager-operator:
+    channel: stable-v1
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  openshift-custom-metrics-autoscaler-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  openshift-gitops-operator:
+    channel: latest
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  openshift-pipelines-operator-rh:
+    channel: latest
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  quay-operator:
+    channel: stable-3.13
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  redhat-oadp-operator:
+    channel: stable-1.4
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  rhacs-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  rhbk-operator:
+    channel: stable-v26.0
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  rhods-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  serverless-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  servicemeshoperator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  sriov-network-operator:
+    channel: stable
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17
+  web-terminal:
+    channel: fast
+    max_version: ""
+    min_version: ""
+    src_index: registry.redhat.io/redhat/redhat-operator-index:v4.17

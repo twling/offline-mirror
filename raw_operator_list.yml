@@ -1,0 +1,44 @@
+operators:
+  certified-operator-index:
+    v4.17:
+      - name: nvidia-network-operator
+      - name: dell-csm-operator-certified
+      - name: gpu-operator-certified
+      - name: nginx-ingress-operator
+      - name: gitlab-operator-kubernetes
+      - name: gitlab-runner-operator
+  redhat-operator-index:
+    v4.17:
+      - name: dpu-operator
+      - name: kubevirt-hyperconverged
+      - name: serverless-operator
+      - name: local-storage-operator
+      - name: odf-operator
+      - name: web-terminal
+      - name: metallb-operator
+      - name: ansible-automation-platform-operator
+      - name: devspaces
+      - name: rhods-operator
+      - name: advanced-cluster-management
+      - name: rhacs-operator
+      - name: servicemeshoperator
+      - name: quay-operator
+      - name: openshift-pipelines-operator-rh
+      - name: rhbk-operator
+      - name: openshift-gitops-operator
+      - name: kubernetes-nmstate-operator
+      - name: nfd
+      - name: openshift-cert-manager-operator
+      - name: authorino-operator
+      - name: redhat-oadp-operator
+      - name: cluster-observability-operator
+      - name: compliance-operator
+      - name: openshift-custom-metrics-autoscaler-operator
+      - name: kernel-module-management
+      - name: kernel-module-management-hub
+      - name: loki-operator
+      - name: lvms-operator
+      - name: node-observability-operator
+      - name: sriov-network-operator
+      - name: cluster-logging
+      - name: cincinnati-operator

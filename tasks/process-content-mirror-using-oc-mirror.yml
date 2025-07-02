@@ -1,0 +1,60 @@
+---
+- name: "ansible.builtin.shell | find catalogs from imageset config file "
+  ansible.builtin.shell: >
+    grep catalog {{ imageset_config_file }} | awk '{print $3}'
+  register: cat_src_out
+
+- name: "Print Catalog Sources output"
+  ansible.builtin.debug:
+    var: cat_src_out
+    verbosity: 2
+
+- name: "set_fact |  manifests prefix"
+  ansible.builtin.set_fact:
+    manifest_prefix: "{{ (imageset_config_file | basename).split('.')[0] }}"
+
+- name: "file:directory | Ensure the images staging directory exist"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - "{{ dir_bundle_location }}"
+    - "{{ dir_bundle_location }}/{{ manifest_prefix }}"
+
+- name: "file:directory | Ensure the bundle staging directory exist"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  when:
+    - is_bundle_part is defined
+    - is_bundle_part | bool
+  loop:
+    - "{{ dir_bundle_location }}/bundle"
+
+- name: "Mirror content using the oc-mirror plugin"
+  ansible.builtin.command: >
+    {{ oc_mirror_cli }}  --config {{ imageset_config_file }} file://{{ dir_bundle_location }}/{{ manifest_prefix }} -v5
+  register: content_mirrored
+  retries: 3
+  delay: 10
+  until: content_mirrored.rc == 0
+
+- name: "Rename bundle so it is related to the imageset config file"
+  ansible.builtin.shell: >
+    mv {{ dir_bundle_location }}/{{ manifest_prefix }}/mirror_seq*.tar {{ dir_bundle_location }}/bundle/{{ manifest_prefix }}.tar
+  when:
+    - is_bundle_part is defined
+    - is_bundle_part | bool
+
+- name: "Rename bundle so it is related to the imageset config file"
+  ansible.builtin.shell: >
+    mv {{ dir_bundle_location }}/{{ manifest_prefix }}/mirror_seq*.tar {{ dir_bundle_location }}/{{ manifest_prefix }}.tar
+  when:
+    - not is_bundle_part is defined or not is_bundle_part | bool
+
+- name: "file:directory | Clean up the manifest directory"
+  ansible.builtin.file:
+    path: "{{ dir_bundle_location }}/{{ manifest_prefix }}"
+    state: absent

@@ -1,0 +1,80 @@
+---
+- name: Run oc-mirror for operators and generate YAML output
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+      - "./operator_list.yml"
+  vars:
+      output_file: "/tmp/oc_mirror_output.yaml"
+
+  tasks:
+      - name: Log operators variable for debugging
+        debug:
+            var: operators
+
+      - name: Create a list of tasks for oc-mirror commands
+        set_fact:
+            command_list: >-
+                {%- set commands = [] -%}
+                {%- for catalog, versions in operators.items() -%}
+                  {%- for version, packages in versions.items() -%}
+                    {%- for package in packages if package['name'] is defined -%}
+                      {%- set command = {
+                        'catalog': "registry.redhat.io/redhat/" + catalog + ":" + version,
+                        'package': package['name']
+                      } -%}
+                      {{ commands.append(command) }}
+                    {%- endfor -%}
+                  {%- endfor -%}
+                {%- endfor -%}
+                {{ commands }}
+
+      - name: Log command list for debugging
+        debug:
+            var: command_list
+
+      - name: Run oc-mirror commands sequentially
+        command: >-
+            oc-mirror list operators
+            --catalog={{ item['catalog'] }}
+            --package={{ item['package'] }}
+        loop: "{{ command_list }}"
+        loop_control:
+            label: "{{ item['package'] }}"
+        register: mirror_results
+
+      - name: Log mirror results for debugging
+        debug:
+            var: mirror_results
+
+      - name: Parse oc-mirror output
+        set_fact:
+            parsed_results: >-
+                {%- set output = {} -%}
+                {%- for result in mirror_results.results if result.stdout is defined and result.stdout.strip() -%}
+                  {%- set lines = result.stdout.split('\n') -%}
+                  {%- if lines|length > 1 -%}
+                    {%- set name_line = lines[1].split() -%}
+                    {%- set name = name_line[0] -%}
+                    {%- set channel = name_line[-1] -%}
+                    {%- set entry = {
+                      name: {
+                        'src_index': result.item.catalog,
+                        'channel': channel,
+                        'min_version': "",
+                        'max_version': ""
+                      }
+                    } -%}
+                    {{ output.update(entry) }}
+                  {%- endif -%}
+                {%- endfor -%}
+                {{ output }}
+
+      - name: Log parsed results for debugging
+        debug:
+            var: parsed_results
+
+      - name: Write parsed results to YAML file
+        copy:
+            content: "{{ parsed_results | to_nice_yaml }}"
+            dest: "{{ output_file }}"
